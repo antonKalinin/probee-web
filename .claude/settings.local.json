@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create vite@latest:*)",
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm install)"
+    ],
+    "deny": []
+  }
+}
