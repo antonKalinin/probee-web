@@ -4,9 +4,9 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white font-geist">
+    <div className="min-h-screen bg-white font-geist flex flex-col">
       <Header />
-      <main>
+      <main className="flex-1">
         <Hero />
       </main>
       <Footer />
