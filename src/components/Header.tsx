@@ -10,7 +10,7 @@ function Header() {
         </div>
         <div className="hidden md:flex items-center space-x-2 text-[14px]">
           <a
-            href="mailto:support@probee.ai"
+            href="mailto:hurricanebox@gmail.com"
             className="text-[rgba(0,0,0,0.60)] hover:text-[rgba(0,0,0,1)] transition-all ease-in-out px-4 py-2"
           >
             Feedback
