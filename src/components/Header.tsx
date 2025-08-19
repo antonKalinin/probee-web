@@ -16,7 +16,7 @@ function Header() {
             Feedback
           </a>
           <a
-            href="https://shdtuknqlgjhijhayyfw.supabase.co/storage/v1/object/public/macos/aarch64/0.0.12/Probee_0.0.12_aarch64.dmg"
+            href="https://shdtuknqlgjhijhayyfw.supabase.co/storage/v1/object/public/macos/aarch64/0.0.14/Probee_0.0.14_aarch64.dmg"
             className="hover:bg-[rgba(0,0,0,0.1)] bg-[rgba(0,0,0,0.05)] text-[rgba(0,0,0,0.60)] hover:text-[rgba(0,0,0,1)] px-4 py-2 rounded-full transition-all ease-in-out duration-500"
             download
           >
@@ -25,7 +25,7 @@ function Header() {
         </div>
         <div className="md:hidden">
           <a
-            href="https://shdtuknqlgjhijhayyfw.supabase.co/storage/v1/object/public/macos/aarch64/0.0.12/Probee_0.0.12_aarch64.dmg"
+            href="https://shdtuknqlgjhijhayyfw.supabase.co/storage/v1/object/public/macos/aarch64/0.0.14/Probee_0.0.14_aarch64.dmg"
             className="bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] text-[rgba(0,0,0,0.60)] hover:text-[rgba(0,0,0,1)] px-3 py-1.5 rounded-full transition-all text-sm"
             download
           >
