@@ -1,7 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from "react";
+import { decode } from "blurhash";
 
 function Hero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (!videoLoaded && canvasRef.current) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+
+      if (ctx) {
+        const blurhash = "WbJH:U~X9YM{?Iof_3-;jrM{j?ofR.t7t6RjRjoeRjRjWBoyogWV";
+        const pixels = decode(blurhash, 64, 36);
+        const imageData = ctx.createImageData(64, 36);
+
+        imageData.data.set(pixels);
+        ctx.putImageData(imageData, 0, 0);
+      }
+    }
+  }, [videoLoaded]);
 
   return (
     <section className="w-full flex items-start justify-center pt-8 sm:pt-6 lg:pt-10">
@@ -16,14 +34,16 @@ function Hero() {
           <div className="w-full max-w-7xl mx-auto mt-8 sm:mt-12">
             <div className="relative w-full aspect-video bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg sm:rounded-xl shadow-2xl shadow-black/10 overflow-hidden">
               {!videoLoaded && (
-                <div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23e2e8f0' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
-                    filter: 'blur(8px)',
-                  }}
-                >
-                  <div className="text-gray-400 text-sm font-medium">Loading video...</div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <canvas
+                    ref={canvasRef}
+                    width={64}
+                    height={36}
+                    className="w-full h-full object-cover"
+                    style={{
+                      imageRendering: "auto",
+                    }}
+                  />
                 </div>
               )}
               <video
@@ -34,7 +54,7 @@ function Hero() {
                 playsInline
                 onLoadedData={() => setVideoLoaded(true)}
                 className={`w-full h-full object-cover transition-opacity duration-500 ${
-                  videoLoaded ? 'opacity-100' : 'opacity-0'
+                  videoLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />
             </div>

@@ -4,7 +4,6 @@
       "Bash(npm create vite@latest:*)",
       "Bash(rm:*)",
       "Bash(mkdir:*)",
-      "Bash(npm install)",
       "Bash(pnpm add:*)",
       "Bash(pnpm dlx:*)",
       "Bash(pnpm run:*)",
@@ -12,7 +11,8 @@
       "Bash(pnpm exec tailwindcss:*)",
       "WebFetch(domain:haye.ai)",
       "Bash(npm run build-css:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(node:*)"
     ],
     "deny": []
   }
