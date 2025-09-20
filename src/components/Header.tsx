@@ -21,6 +21,11 @@ function Header() {
             download
           >
             Download
+            <img
+              src="/apple_icon.svg"
+              alt="macos"
+              className="h-4 inline-block ml-2 opacity-70 mt-[-5px]"
+            />
           </a>
         </div>
         <div className="md:hidden">
@@ -30,6 +35,11 @@ function Header() {
             download
           >
             Download
+            <img
+              src="/apple_icon.svg"
+              alt="macos"
+              className="h-4 inline-block ml-2 opacity-70 mt-[-5px]"
+            />
           </a>
         </div>
       </div>
