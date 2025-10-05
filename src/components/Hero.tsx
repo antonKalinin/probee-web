@@ -34,7 +34,7 @@ function Hero() {
           <div className="w-full max-w-7xl mx-auto mt-8 sm:mt-12">
             <div className="relative w-full aspect-video bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg sm:rounded-xl shadow-2xl shadow-black/10 overflow-hidden">
               {!videoLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="inset-0 flex items-center justify-center">
                   <canvas
                     ref={canvasRef}
                     width={64}
@@ -47,7 +47,7 @@ function Hero() {
                 </div>
               )}
               <video
-                src="/probee_learn_finnish_demo.mp4"
+                src="/probee_intro.mp4"
                 autoPlay
                 muted
                 loop
