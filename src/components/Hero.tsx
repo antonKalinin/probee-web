@@ -1,25 +1,26 @@
 import { useState, useEffect, useRef } from "react";
-import { decode } from "blurhash";
 
 function Hero() {
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [lowQualityLoaded, setLowQualityLoaded] = useState(false);
+  const [highQualityLoaded, setHighQualityLoaded] = useState(false);
+  const lowQualityVideoRef = useRef<HTMLVideoElement>(null);
+  const highQualityVideoRef = useRef<HTMLVideoElement>(null);
 
+  // Sync playback position when switching from low to high quality
   useEffect(() => {
-    if (!videoLoaded && canvasRef.current) {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext("2d");
+    if (highQualityLoaded && lowQualityVideoRef.current && highQualityVideoRef.current) {
+      const lowQualityVideo = lowQualityVideoRef.current;
+      const highQualityVideo = highQualityVideoRef.current;
 
-      if (ctx) {
-        const blurhash = "WbJH:U~X9YM{?Iof_3-;jrM{j?ofR.t7t6RjRjoeRjRjWBoyogWV";
-        const pixels = decode(blurhash, 64, 36);
-        const imageData = ctx.createImageData(64, 36);
+      // Sync the current time from low quality to high quality
+      highQualityVideo.currentTime = lowQualityVideo.currentTime;
 
-        imageData.data.set(pixels);
-        ctx.putImageData(imageData, 0, 0);
-      }
+      // Start playing high quality video
+      highQualityVideo.play().catch(() => {
+        // Ignore autoplay errors
+      });
     }
-  }, [videoLoaded]);
+  }, [highQualityLoaded]);
 
   return (
     <section className="w-full flex items-start justify-center pt-8 sm:pt-6 lg:pt-10">
@@ -33,27 +34,35 @@ function Hero() {
           </p>
           <div className="w-full max-w-7xl mx-auto mt-8 sm:mt-12">
             <div className="relative w-full aspect-video bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg sm:rounded-xl shadow-2xl shadow-black/10 overflow-hidden">
-              {!videoLoaded && (
-                <canvas
-                  ref={canvasRef}
-                  width={64}
-                  height={36}
-                  className="w-full h-[40rem] object-cover"
-                  style={{
-                    imageRendering: "auto",
-                  }}
-                />
-              )}
+              {/* Low quality video - loads first, displayed initially */}
               <video
-                src="/probee_intro.mp4"
+                ref={lowQualityVideoRef}
+                src="/probee_intro_low.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
-                onLoadedData={() => setVideoLoaded(true)}
+                preload="auto"
+                onLoadedData={() => setLowQualityLoaded(true)}
                 className={`w-full h-full object-cover transition-opacity duration-500 ${
-                  videoLoaded ? "opacity-100" : "opacity-0"
+                  highQualityLoaded ? "opacity-0" : "opacity-100"
                 }`}
+                style={highQualityLoaded ? { display: "none" } : {}}
+              />
+
+              {/* High quality video - loads in parallel, shows when ready */}
+              <video
+                ref={highQualityVideoRef}
+                src="/probee_intro.mp4"
+                muted
+                loop
+                playsInline
+                preload="auto"
+                onCanPlayThrough={() => setHighQualityLoaded(true)}
+                className={`w-full h-full object-cover transition-opacity duration-500 ${
+                  highQualityLoaded ? "opacity-100" : "opacity-0"
+                }`}
+                style={!highQualityLoaded ? { position: "absolute", top: 0, left: 0, pointerEvents: "none" } : {}}
               />
             </div>
           </div>

@@ -12,7 +12,8 @@
       "WebFetch(domain:haye.ai)",
       "Bash(npm run build-css:*)",
       "Bash(cp:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "WebSearch"
     ],
     "deny": []
   }
