@@ -17,7 +17,7 @@ function Hero() {
                 loop
                 playsInline
                 preload="auto"
-                poster="/probee_intro_poster.png"
+                poster="/probee_intro_poster.webp"
                 className="w-full h-full object-cover transition-opacity duration-500"
               >
                 <source src="/probee_intro.webm" type="video/webm" />
